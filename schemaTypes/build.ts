@@ -391,6 +391,95 @@ export const build = defineType({
       group: 'content',
       of: [{type: 'string'}],
     }),
+    defineField({
+      name: 'reviews',
+      title: 'Відгуки клієнтів',
+      type: 'array',
+      group: 'content',
+      description:
+        'Відгуки саме про цю збірку (картка на сайті та блок на сторінці ПК). Фото необовʼязкове — тоді підставиться стандартне зображення.',
+      of: [
+        {
+          type: 'object',
+          title: 'Відгук',
+          fields: [
+            defineField({
+              name: 'authorName',
+              title: "Ім'я автора",
+              type: 'string',
+              description: 'Напр. «Олександр К.»',
+              validation: (R) => R.required(),
+            }),
+            defineField({
+              name: 'authorPhoto',
+              title: 'Фото / скрін для картки',
+              type: 'image',
+              options: {hotspot: true},
+              description: 'Показується у великій картці відгуку на головній та на сторінці ПК.',
+            }),
+            defineField({
+              name: 'rating',
+              title: 'Оцінка (зірки)',
+              type: 'number',
+              initialValue: 5,
+              validation: (R) => R.required().integer().min(1).max(5),
+            }),
+            defineField({
+              name: 'text',
+              title: 'Текст відгуку',
+              type: 'text',
+              rows: 4,
+              validation: (R) => R.required(),
+            }),
+            defineField({
+              name: 'sourcePlatform',
+              title: 'Джерело',
+              type: 'string',
+              initialValue: 'google',
+              options: {
+                list: [
+                  {title: 'Google Maps', value: 'google'},
+                  {title: 'Instagram', value: 'instagram'},
+                  {title: 'Telegram', value: 'telegram'},
+                  {title: 'Прямий відгук', value: 'direct'},
+                ],
+              },
+              validation: (R) => R.required(),
+            }),
+            defineField({
+              name: 'externalUrl',
+              title: 'Посилання на оригінал',
+              type: 'url',
+              description: 'Необовʼязково — на пост чи відгук у Google / Instagram.',
+            }),
+            defineField({
+              name: 'isVerified',
+              title: 'Позначка «перевірений відгук»',
+              type: 'boolean',
+              initialValue: true,
+            }),
+          ],
+          preview: {
+            select: {authorName: 'authorName', rating: 'rating', media: 'authorPhoto'},
+            prepare({
+              authorName,
+              rating,
+              media,
+            }: {
+              authorName?: string
+              rating?: number
+              media?: unknown
+            }) {
+              return {
+                title: authorName ?? 'Без імені',
+                subtitle: rating ? `${rating}★` : undefined,
+                media: media as any,
+              }
+            },
+          },
+        },
+      ],
+    }),
 
     // ─── SEO ───────────────────────────────────────────────
     defineField({

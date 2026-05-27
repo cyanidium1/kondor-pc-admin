@@ -10,7 +10,7 @@ export const breadcrumbs = defineType({
   type: 'object',
   fields: [
     defineField({
-      name: '__info',
+      name: 'info',
       type: 'string',
       readOnly: true,
       initialValue: 'Авто з контексту сторінки. Налаштувань нема.',
