@@ -1,4 +1,51 @@
-import { gpu } from "./gpu";
-import { build } from "./build";
+// === Існуючі (НЕ ЧІПАЄМО) ===
+import {gpu} from './gpu'
+import {build} from './build'
 
-export const schemaTypes = [gpu, build];
+// Orphan `game.ts` — окрема сутність для довідника ігор.
+// У Спринті 1А реєструємо щоб structure.ts показав «🎮 Ігри».
+// Інші orphan-об'єкти (buildColor/buildComponent/configOption/
+// configOptionGroup/gpuFpsRow) НЕ реєструємо — buildColor вимагає
+// плагіна @sanity/color-input який не встановлений, а решта це
+// мертвий код з попередньої моделі.
+import {game} from './game'
+
+// === Нові документи ===
+import {page} from './page'
+import {tag} from './tag'
+import {faqEntry} from './faqEntry'
+
+// === Нові універсальні секції (Sprint 1А) ===
+import {breadcrumbs} from './sections/breadcrumbs'
+import {anchorNav} from './sections/anchorNav'
+import {heroSimple} from './sections/heroSimple'
+import {textBlock} from './sections/textBlock'
+import {imageFull} from './sections/imageFull'
+import {imageTextSplit} from './sections/imageTextSplit'
+import {featureList} from './sections/featureList'
+import {mediaVideo} from './sections/mediaVideo'
+import {statsStrip} from './sections/statsStrip'
+import {faqAccordion} from './sections/faqAccordion'
+import {ctaPromoBanner} from './sections/ctaPromoBanner'
+
+export const schemaTypes = [
+  // documents
+  build,
+  gpu,
+  game,
+  page,
+  tag,
+  faqEntry,
+  // section objects
+  breadcrumbs,
+  anchorNav,
+  heroSimple,
+  textBlock,
+  imageFull,
+  imageTextSplit,
+  featureList,
+  mediaVideo,
+  statsStrip,
+  faqAccordion,
+  ctaPromoBanner,
+]
