@@ -1,0 +1,19 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "Sanity Studio (kondor-pc-admin)",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev"],
+      "port": 3333,
+      "cwd": "/Users/olgamykhailova/Documents/GitHub/kondor-pc-admin"
+    },
+    {
+      "name": "Next.js Frontend (kondor-pc-frontend)",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev"],
+      "port": 3000,
+      "cwd": "/Users/olgamykhailova/Documents/GitLab/kondor-pc-frontend"
+    }
+  ]
+}
