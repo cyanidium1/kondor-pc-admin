@@ -8,7 +8,7 @@ export default defineConfig({
   name: 'default',
   title: 'kondor-pc-admin',
 
-  projectId: '0j0lqw3e',
+  projectId: 'if6dzz62',
   dataset: 'production',
 
   plugins: [structureTool({structure}), visionTool()],
