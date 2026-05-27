@@ -16,6 +16,13 @@ import {tag} from './tag'
 import {faqEntry} from './faqEntry'
 
 // === Нові універсальні секції (Sprint 1А) ===
+// === Blog (port from nbyg-adm — preserve original naming) ===
+import {blogPost} from './documents/blogPost'
+import {blogPage} from './documents/blogPage'
+import {seoSettings} from './objects/seoSettings'
+import {faqSection} from './objects/faqSection'
+import {gallerySection} from './objects/gallerySection'
+
 import {breadcrumbs} from './sections/breadcrumbs'
 import {anchorNav} from './sections/anchorNav'
 import {heroSimple} from './sections/heroSimple'
@@ -36,6 +43,12 @@ export const schemaTypes = [
   page,
   tag,
   faqEntry,
+  blogPost,
+  blogPage,
+  // blog support objects (port from nbyg-adm)
+  seoSettings,
+  faqSection,
+  gallerySection,
   // section objects
   breadcrumbs,
   anchorNav,

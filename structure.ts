@@ -24,6 +24,18 @@ export const structure: StructureResolver = (S: StructureBuilder) =>
       S.listItem().title('❓ FAQ').child(S.documentTypeList('faqEntry')),
       S.listItem().title('🏷️ Теги').child(S.documentTypeList('tag')),
       S.divider(),
+      // === Блог ===
+      S.listItem()
+        .title('📰 Статті блогу')
+        .child(
+          S.documentTypeList('blogPost')
+            .title('Статті блогу')
+            .defaultOrdering([{field: '_createdAt', direction: 'desc'}]),
+        ),
+      S.listItem()
+        .title('📰 Блог (SEO)')
+        .child(S.document().schemaType('blogPage').documentId('blogPage')),
+      S.divider(),
       // === Існуючий каталог (НЕ ЧІПАЄМО) ===
       S.listItem().title('🖥️ Ігрові ПК').child(S.documentTypeList('build')),
       S.listItem().title('💾 GPU').child(S.documentTypeList('gpu')),
