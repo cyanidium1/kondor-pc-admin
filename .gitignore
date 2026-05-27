@@ -27,3 +27,7 @@
 
 # Dotenv and similar local-only files
 *.local
+
+# Local tooling / accidental nested clones (not project source)
+.claude/
+/kondor-pc-admin/
