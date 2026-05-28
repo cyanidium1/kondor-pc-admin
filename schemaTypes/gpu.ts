@@ -2,13 +2,12 @@ import { defineField, defineType } from "sanity";
 
 type FpsRow = {
   game?: { _ref?: string };
-  gameSlug?: string;
   resolution?: string;
   settings?: string;
 };
 
 function fpsUniqKey(row: FpsRow): string | null {
-  const gameKey = row.game?._ref || row.gameSlug?.trim();
+  const gameKey = row.game?._ref;
   if (!gameKey || !row.resolution) return null;
   return [gameKey, row.resolution, row.settings ?? "high"].join("|");
 }
@@ -68,16 +67,8 @@ export const gpu = defineType({
               title: "Гра",
               type: "reference",
               to: [{ type: "game" }],
-              description:
-                "Основне поле зв'язку. Обери документ гри — це джерело істини для зв'язку FPS з game.",
+              description: "Обери документ гри — це єдиний спосіб зв'язку FPS з game.",
               validation: (R) => R.required(),
-            }),
-            defineField({
-              name: "gameSlug",
-              title: "Гра (slug) — legacy",
-              type: "string",
-              description:
-                "Перехідне поле для зворотної сумісності. Нові записи заповнюй через поле «Гра» (reference).",
             }),
             defineField({
               name: "resolution",
@@ -133,13 +124,12 @@ export const gpu = defineType({
           preview: {
             select: {
               gameName: "game.name",
-              gameSlug: "gameSlug",
               resolution: "resolution",
               settings: "settings",
               fpsAvg: "fpsAvg",
             },
-            prepare({ gameName, gameSlug, resolution, settings, fpsAvg }) {
-              const gameLabel = gameName || gameSlug || "unknown-game";
+            prepare({ gameName, resolution, settings, fpsAvg }) {
+              const gameLabel = gameName || "unknown-game";
               return {
                 title: `${gameLabel} · ${resolution} · ${settings}`,
                 subtitle: `${fpsAvg} FPS avg`,

@@ -8,6 +8,42 @@ const client = createClient({
   useCdn: false,
 });
 
+const games = [
+  {_id: "game-cs2", slug: "cs2", name: "Counter-Strike 2", shortName: "CS2", enabled: true, isPopular: true},
+  {
+    _id: "game-warzone",
+    slug: "warzone",
+    name: "Call of Duty: Warzone",
+    shortName: "Warzone",
+    enabled: true,
+    isPopular: true,
+  },
+  {_id: "game-gta5", slug: "gta5", name: "Grand Theft Auto V", shortName: "GTA 5", enabled: true, isPopular: true},
+  {_id: "game-fortnite", slug: "fortnite", name: "Fortnite", shortName: "Fortnite", enabled: true, isPopular: true},
+  {_id: "game-dota2", slug: "dota2", name: "Dota 2", shortName: "Dota 2", enabled: true, isPopular: true},
+  {_id: "game-valorant", slug: "valorant", name: "Valorant", shortName: "Valorant", enabled: true, isPopular: true},
+  {
+    _id: "game-cyberpunk",
+    slug: "cyberpunk",
+    name: "Cyberpunk 2077",
+    shortName: "CP 2077",
+    enabled: true,
+    isPopular: true,
+    isSystemHeavy: true,
+  },
+];
+
+function fpsRow(_key, gameRef, resolution, fpsAvg) {
+  return {
+    _key,
+    game: {_type: "reference", _ref: gameRef},
+    resolution,
+    settings: "high",
+    fpsAvg,
+    verified: true,
+  };
+}
+
 // ─── GPU: NVIDIA RTX 5060 8GB ─────────────────────────────────────────────────
 // FPS базові значення беремо з VEGA (Ryzen 5 7400F + DDR5) як еталон.
 const gpuRtx5060 = {
@@ -17,23 +53,23 @@ const gpuRtx5060 = {
   model: "GeForce RTX 5060 8GB",
   vram: "8 GB",
   fps: [
-    { _key: "cs2-fhd",       gameSlug: "cs2",       resolution: "fullhd", settings: "high", fpsAvg: 380, verified: true },
-    { _key: "cs2-2k",        gameSlug: "cs2",       resolution: "2k",     settings: "high", fpsAvg: 280, verified: true },
-    { _key: "cs2-4k",        gameSlug: "cs2",       resolution: "4k",     settings: "high", fpsAvg: 165, verified: true },
-    { _key: "warzone-fhd",   gameSlug: "warzone",   resolution: "fullhd", settings: "high", fpsAvg: 145, verified: true },
-    { _key: "warzone-2k",    gameSlug: "warzone",   resolution: "2k",     settings: "high", fpsAvg: 110, verified: true },
-    { _key: "gta5-fhd",      gameSlug: "gta5",      resolution: "fullhd", settings: "high", fpsAvg: 140, verified: true },
-    { _key: "gta5-2k",       gameSlug: "gta5",      resolution: "2k",     settings: "high", fpsAvg: 95,  verified: true },
-    { _key: "gta5-4k",       gameSlug: "gta5",      resolution: "4k",     settings: "high", fpsAvg: 60,  verified: true },
-    { _key: "fortnite-fhd",  gameSlug: "fortnite",  resolution: "fullhd", settings: "high", fpsAvg: 180, verified: true },
-    { _key: "fortnite-2k",   gameSlug: "fortnite",  resolution: "2k",     settings: "high", fpsAvg: 130, verified: true },
-    { _key: "dota2-fhd",     gameSlug: "dota2",     resolution: "fullhd", settings: "high", fpsAvg: 210, verified: true },
-    { _key: "dota2-2k",      gameSlug: "dota2",     resolution: "2k",     settings: "high", fpsAvg: 170, verified: true },
-    { _key: "valorant-fhd",  gameSlug: "valorant",  resolution: "fullhd", settings: "high", fpsAvg: 380, verified: true },
-    { _key: "valorant-2k",   gameSlug: "valorant",  resolution: "2k",     settings: "high", fpsAvg: 280, verified: true },
-    { _key: "cyberpunk-fhd", gameSlug: "cyberpunk", resolution: "fullhd", settings: "high", fpsAvg: 85,  verified: true },
-    { _key: "cyberpunk-2k",  gameSlug: "cyberpunk", resolution: "2k",     settings: "high", fpsAvg: 62,  verified: true },
-    { _key: "cyberpunk-4k",  gameSlug: "cyberpunk", resolution: "4k",     settings: "high", fpsAvg: 38,  verified: true },
+    fpsRow("cs2-fhd", "game-cs2", "fullhd", 380),
+    fpsRow("cs2-2k", "game-cs2", "2k", 280),
+    fpsRow("cs2-4k", "game-cs2", "4k", 165),
+    fpsRow("warzone-fhd", "game-warzone", "fullhd", 145),
+    fpsRow("warzone-2k", "game-warzone", "2k", 110),
+    fpsRow("gta5-fhd", "game-gta5", "fullhd", 140),
+    fpsRow("gta5-2k", "game-gta5", "2k", 95),
+    fpsRow("gta5-4k", "game-gta5", "4k", 60),
+    fpsRow("fortnite-fhd", "game-fortnite", "fullhd", 180),
+    fpsRow("fortnite-2k", "game-fortnite", "2k", 130),
+    fpsRow("dota2-fhd", "game-dota2", "fullhd", 210),
+    fpsRow("dota2-2k", "game-dota2", "2k", 170),
+    fpsRow("valorant-fhd", "game-valorant", "fullhd", 380),
+    fpsRow("valorant-2k", "game-valorant", "2k", 280),
+    fpsRow("cyberpunk-fhd", "game-cyberpunk", "fullhd", 85),
+    fpsRow("cyberpunk-2k", "game-cyberpunk", "2k", 62),
+    fpsRow("cyberpunk-4k", "game-cyberpunk", "4k", 38),
   ],
 };
 
@@ -89,7 +125,7 @@ const buildVega = {
   ],
 
   includedFeatureKeys: ["assembly","stress-test","windows","office","video-report","delivery","warranty","support","consult","return"],
-  faqKeys: ["b-gta6","b-monitor","b-power","b-upgrade","b-return"],
+  useDefaultFaq: true,
 };
 
 // ─── HYPER ─────────────────────────────────────────────────────────────────────
@@ -147,11 +183,26 @@ const buildHyper = {
   ],
 
   includedFeatureKeys: ["assembly","stress-test","windows","office","video-report","delivery","warranty","support","consult","return"],
-  faqKeys: ["b-gta6","b-monitor","b-power","b-upgrade","b-return"],
+  useDefaultFaq: true,
 };
 
 // ─── CREATE ───────────────────────────────────────────────────────────────────
 async function main() {
+  console.log("Creating/updating games...");
+  for (const game of games) {
+    await client.createOrReplace({
+      _type: "game",
+      _id: game._id,
+      slug: game.slug,
+      name: game.name,
+      shortName: game.shortName,
+      enabled: game.enabled,
+      isPopular: game.isPopular,
+      isSystemHeavy: game.isSystemHeavy ?? false,
+    });
+  }
+  console.log(`✓ ${games.length} games created`);
+
   console.log("Creating GPU: NVIDIA RTX 5060 8GB...");
   await client.createOrReplace(gpuRtx5060);
   console.log("✓ GPU created");

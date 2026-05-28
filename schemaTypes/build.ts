@@ -385,11 +385,59 @@ export const build = defineType({
       description: 'Напр. assembly, stress-test, windows, warranty',
     }),
     defineField({
-      name: 'faqKeys',
-      title: 'Ключі FAQ',
+      name: 'useDefaultFaq',
+      title: 'Використовувати дефолтні FAQ (з фронту)',
+      type: 'boolean',
+      group: 'content',
+      initialValue: true,
+      description:
+        'Якщо увімкнено — на фронті відображаються дефолтні (замокані) FAQ. Якщо вимкнено — використовуються FAQ нижче.',
+    }),
+    defineField({
+      name: 'customFaq',
+      title: 'FAQ для цієї збірки',
       type: 'array',
       group: 'content',
-      of: [{type: 'string'}],
+      hidden: ({parent}) => parent?.useDefaultFaq !== false,
+      validation: (R) =>
+        R.custom((value, context) => {
+          const parent = context.parent as {useDefaultFaq?: boolean} | undefined
+          if (parent?.useDefaultFaq === false && (!Array.isArray(value) || value.length === 0)) {
+            return 'Додай хоча б одне FAQ, якщо дефолтні FAQ вимкнені.'
+          }
+          return true
+        }),
+      of: [
+        defineField({
+          name: 'item',
+          title: 'FAQ елемент',
+          type: 'object',
+          fields: [
+            defineField({
+              name: 'question',
+              title: 'Питання',
+              type: 'string',
+              validation: (R) => R.required().min(8),
+            }),
+            defineField({
+              name: 'answer',
+              title: 'Відповідь',
+              type: 'text',
+              rows: 4,
+              validation: (R) => R.required().min(12),
+            }),
+          ],
+          preview: {
+            select: {title: 'question', subtitle: 'answer'},
+            prepare({title, subtitle}: {title?: string; subtitle?: string}) {
+              return {
+                title: title ?? 'FAQ без питання',
+                subtitle: subtitle ? `${subtitle.slice(0, 80)}${subtitle.length > 80 ? '…' : ''}` : undefined,
+              }
+            },
+          },
+        }),
+      ],
     }),
     defineField({
       name: 'reviews',
