@@ -36,6 +36,23 @@ export const structure: StructureResolver = (S: StructureBuilder) =>
         .title('📰 Блог (SEO)')
         .child(S.document().schemaType('blogPage').documentId('blogPage')),
       S.divider(),
+      S.listItem()
+        .title('⚙️ Site settings')
+        .child(
+          S.list()
+            .title('Site settings')
+            .items([
+              S.listItem()
+                .title('Реквізити для оплати')
+                .child(
+                  S.document()
+                    .schemaType('paymentRequisites')
+                    .documentId('paymentRequisites')
+                    .title('Реквізити для оплати'),
+                ),
+            ]),
+        ),
+      S.divider(),
       // === Існуючий каталог (НЕ ЧІПАЄМО) ===
       S.listItem().title('🖥️ Ігрові ПК').child(S.documentTypeList('build')),
       S.listItem().title('💾 GPU').child(S.documentTypeList('gpu')),

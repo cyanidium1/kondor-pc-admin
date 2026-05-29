@@ -19,6 +19,7 @@ import {faqEntry} from './faqEntry'
 // === Blog (port from nbyg-adm — preserve original naming) ===
 import {blogPost} from './documents/blogPost'
 import {blogPage} from './documents/blogPage'
+import {paymentRequisites} from './documents/paymentRequisites'
 import {seoSettings} from './objects/seoSettings'
 import {faqSection} from './objects/faqSection'
 import {gallerySection} from './objects/gallerySection'
@@ -45,6 +46,7 @@ export const schemaTypes = [
   faqEntry,
   blogPost,
   blogPage,
+  paymentRequisites,
   // blog support objects (port from nbyg-adm)
   seoSettings,
   faqSection,
