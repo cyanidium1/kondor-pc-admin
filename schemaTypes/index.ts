@@ -20,6 +20,7 @@ import {faqEntry} from './faqEntry'
 import {blogPost} from './documents/blogPost'
 import {blogPage} from './documents/blogPage'
 import {paymentRequisites} from './documents/paymentRequisites'
+import {siteContacts} from './documents/siteContacts'
 import {seoSettings} from './objects/seoSettings'
 import {faqSection} from './objects/faqSection'
 import {gallerySection} from './objects/gallerySection'
@@ -47,6 +48,7 @@ export const schemaTypes = [
   blogPost,
   blogPage,
   paymentRequisites,
+  siteContacts,
   // blog support objects (port from nbyg-adm)
   seoSettings,
   faqSection,

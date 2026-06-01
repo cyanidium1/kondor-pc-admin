@@ -50,6 +50,14 @@ export const structure: StructureResolver = (S: StructureBuilder) =>
                     .documentId('paymentRequisites')
                     .title('Реквізити для оплати'),
                 ),
+              S.listItem()
+                .title('Контакти')
+                .child(
+                  S.document()
+                    .schemaType('siteContacts')
+                    .documentId('siteContacts')
+                    .title('Контакти'),
+                ),
             ]),
         ),
       S.divider(),
