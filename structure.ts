@@ -58,6 +58,14 @@ export const structure: StructureResolver = (S: StructureBuilder) =>
                     .documentId('siteContacts')
                     .title('Контакти'),
                 ),
+              S.listItem()
+                .title('Головна: для яких задач збираємо ПК')
+                .child(
+                  S.document()
+                    .schemaType('homePcTasksSection')
+                    .documentId('homePcTasksSection')
+                    .title('Для яких задач збираємо ПК'),
+                ),
             ]),
         ),
       S.divider(),
