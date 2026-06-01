@@ -27,13 +27,6 @@ export const paymentRequisites = defineType({
           .error('ЄДРПОУ / РНОКПП: лише цифри, 8 або 10 символів.'),
     }),
     defineField({
-      name: 'legalAddress',
-      title: 'Юридична адреса',
-      type: 'text',
-      rows: 3,
-      validation: (R) => R.required().custom(nonEmptyString).min(10),
-    }),
-    defineField({
       name: 'iban',
       title: 'IBAN',
       type: 'string',
