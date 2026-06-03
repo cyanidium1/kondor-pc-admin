@@ -118,6 +118,14 @@ export const build = defineType({
       validation: (R) => R.required(),
     }),
     defineField({
+      name: 'showInHomeTop3',
+      title: 'Показувати на головній в топ-3',
+      type: 'boolean',
+      group: 'main',
+      initialValue: false,
+      description: 'Якщо увімкнено — збірка потрапляє в блок топ-3 на головній сторінці сайту.',
+    }),
+    defineField({
       name: 'shortTagline',
       title: 'Короткий слоган',
       type: 'string',
@@ -551,18 +559,20 @@ export const build = defineType({
       tier: 'tier',
       status: 'status',
       price: 'priceUah',
+      showInHomeTop3: 'showInHomeTop3',
       media: 'heroImage',
     },
-    prepare({name, tier, status, price, media}: Record<string, any>) {
+    prepare({name, tier, status, price, showInHomeTop3, media}: Record<string, any>) {
       const statusLabels: Record<string, string> = {
         in_stock: '✅ В наявності',
         assemble_on_order: '🔧 Під замовлення',
         out_of_stock: '❌ Немає',
         archived: '📦 Архів',
       }
+      const top3 = showInHomeTop3 ? ' · 🏠 Топ-3' : ''
       return {
         title: name,
-        subtitle: `${tier?.toUpperCase()} · ${price?.toLocaleString('uk')} ₴ · ${statusLabels[status] ?? status}`,
+        subtitle: `${tier?.toUpperCase()} · ${price?.toLocaleString('uk')} ₴ · ${statusLabels[status] ?? status}${top3}`,
         media,
       }
     },
