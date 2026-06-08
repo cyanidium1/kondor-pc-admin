@@ -407,6 +407,8 @@ export const build = defineType({
       type: 'array',
       group: 'content',
       hidden: ({parent}) => parent?.useDefaultFaq !== false,
+      description:
+        'Оберіть питання зі списку FAQ (розділ «❓ FAQ»). Одне питання можна використати в кількох збірках.',
       validation: (R) =>
         R.custom((value, context) => {
           const parent = context.parent as {useDefaultFaq?: boolean} | undefined
@@ -415,37 +417,7 @@ export const build = defineType({
           }
           return true
         }),
-      of: [
-        defineField({
-          name: 'item',
-          title: 'FAQ елемент',
-          type: 'object',
-          fields: [
-            defineField({
-              name: 'question',
-              title: 'Питання',
-              type: 'string',
-              validation: (R) => R.required().min(8),
-            }),
-            defineField({
-              name: 'answer',
-              title: 'Відповідь',
-              type: 'text',
-              rows: 4,
-              validation: (R) => R.required().min(12),
-            }),
-          ],
-          preview: {
-            select: {title: 'question', subtitle: 'answer'},
-            prepare({title, subtitle}: {title?: string; subtitle?: string}) {
-              return {
-                title: title ?? 'FAQ без питання',
-                subtitle: subtitle ? `${subtitle.slice(0, 80)}${subtitle.length > 80 ? '…' : ''}` : undefined,
-              }
-            },
-          },
-        }),
-      ],
+      of: [{type: 'reference', to: [{type: 'faqEntry'}]}],
     }),
     defineField({
       name: 'reviews',

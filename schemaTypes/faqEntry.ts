@@ -3,9 +3,10 @@ import {defineField, defineType} from 'sanity'
 /**
  * FAQ entry — окремий документ з питанням-відповіддю.
  *
- * Використовується через reference у блоці faqAccordion на сторінках,
- * щоб одне й те саме питання можна було показувати на декількох лендингах
- * без копіпасти. Відповідь — Portable Text з підтримкою посилань.
+ * Використовується через reference у блоці faqAccordion на лендингах
+ * та в полі customFaq збірки (build), щоб одне й те саме питання
+ * можна було показувати в кількох місцях без копіпасти.
+ * Відповідь — Portable Text з підтримкою посилань.
  */
 export const faqEntry = defineType({
   name: 'faqEntry',
