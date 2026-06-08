@@ -47,11 +47,6 @@ export const faqEntry = defineType({
       ],
       validation: (r) => r.required().min(1),
     }),
-    defineField({
-      name: 'tags',
-      type: 'array',
-      of: [{type: 'reference', to: [{type: 'tag'}]}],
-    }),
   ],
   preview: {select: {title: 'question'}},
 })

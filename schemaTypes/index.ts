@@ -12,7 +12,6 @@ import {game} from './game'
 
 // === Нові документи ===
 import {page} from './page'
-import {tag} from './tag'
 import {faqEntry} from './faqEntry'
 import {promoCode} from './promoCode'
 
@@ -45,7 +44,6 @@ export const schemaTypes = [
   gpu,
   game,
   page,
-  tag,
   faqEntry,
   promoCode,
   blogPost,

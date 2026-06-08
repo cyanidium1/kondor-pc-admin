@@ -65,15 +65,6 @@ export const page = defineType({
       group: 'main',
     }),
     defineField({
-      name: 'tags',
-      title: 'Теги',
-      description:
-        'Для фільтрації та угрупувань. У хвилі 1 використовується для організації в Studio.',
-      type: 'array',
-      of: [{type: 'reference', to: [{type: 'tag'}]}],
-      group: 'main',
-    }),
-    defineField({
       name: 'sections',
       title: 'Секції',
       type: 'array',

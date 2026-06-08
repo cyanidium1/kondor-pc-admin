@@ -23,7 +23,6 @@ export const structure: StructureResolver = (S: StructureBuilder) =>
         ),
       S.listItem().title('❓ FAQ').child(S.documentTypeList('faqEntry')),
       S.listItem().title('🎟️ Промокоди').child(S.documentTypeList('promoCode')),
-      S.listItem().title('🏷️ Теги').child(S.documentTypeList('tag')),
       S.divider(),
       // === Блог ===
       S.listItem()
