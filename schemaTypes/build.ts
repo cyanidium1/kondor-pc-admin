@@ -511,16 +511,9 @@ export const build = defineType({
 
     // ─── SEO ───────────────────────────────────────────────
     defineField({
-      name: 'seoTitle',
-      title: 'SEO заголовок',
-      type: 'string',
-      group: 'seo',
-    }),
-    defineField({
-      name: 'seoDescription',
-      title: 'SEO опис',
-      type: 'text',
-      rows: 2,
+      name: 'seo',
+      title: 'SEO блок',
+      type: 'seoSettings',
       group: 'seo',
     }),
   ],
