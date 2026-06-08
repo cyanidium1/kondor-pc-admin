@@ -19,6 +19,7 @@ import {promoCode} from './promoCode'
 // === Blog (port from nbyg-adm — preserve original naming) ===
 import {blogPost} from './documents/blogPost'
 import {blogPage} from './documents/blogPage'
+import {siteSeoPageTypes} from './documents/siteSeoPages'
 import {paymentRequisites} from './documents/paymentRequisites'
 import {siteContacts} from './documents/siteContacts'
 import {homePcTasksSection} from './documents/homePcTasksSection'
@@ -48,6 +49,7 @@ export const schemaTypes = [
   promoCode,
   blogPost,
   blogPage,
+  ...siteSeoPageTypes,
   paymentRequisites,
   siteContacts,
   homePcTasksSection,
