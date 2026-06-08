@@ -14,6 +14,7 @@ import {game} from './game'
 import {page} from './page'
 import {tag} from './tag'
 import {faqEntry} from './faqEntry'
+import {promoCode} from './promoCode'
 
 // === Нові універсальні секції (Sprint 1А) ===
 // === Blog (port from nbyg-adm — preserve original naming) ===
@@ -46,6 +47,7 @@ export const schemaTypes = [
   page,
   tag,
   faqEntry,
+  promoCode,
   blogPost,
   blogPage,
   paymentRequisites,
