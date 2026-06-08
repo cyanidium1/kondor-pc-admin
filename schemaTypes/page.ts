@@ -86,20 +86,9 @@ export const page = defineType({
     }),
     defineField({
       name: 'seo',
-      title: 'SEO',
-      type: 'object',
+      title: 'SEO блок',
+      type: 'seoSettings',
       group: 'seo',
-      fields: [
-        defineField({name: 'title', type: 'string', validation: (r) => r.required().max(70)}),
-        defineField({
-          name: 'description',
-          type: 'text',
-          rows: 3,
-          validation: (r) => r.required().max(170),
-        }),
-        defineField({name: 'ogImage', type: 'image', options: {hotspot: true}}),
-        defineField({name: 'noindex', type: 'boolean', initialValue: false}),
-      ],
     }),
     defineField({
       name: 'publishedAt',
