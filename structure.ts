@@ -1,4 +1,19 @@
 import type {StructureBuilder, StructureResolver} from 'sanity/structure'
+import {SEO_MENU_ITEMS} from './schemaTypes/documents/siteSeoPages'
+
+function seoMenuItem(
+  S: StructureBuilder,
+  item: (typeof SEO_MENU_ITEMS)[number],
+) {
+  return S.listItem()
+    .title(item.menuTitle)
+    .child(
+      S.document()
+        .schemaType(item.schemaType)
+        .documentId(item.documentId)
+        .title(item.menuTitle),
+    )
+}
 
 /**
  * Studio structure.
@@ -30,10 +45,14 @@ export const structure: StructureResolver = (S: StructureBuilder) =>
             .title('Статті блогу')
             .defaultOrdering([{field: '_createdAt', direction: 'desc'}]),
         ),
-      S.listItem()
-        .title('📰 Блог (SEO)')
-        .child(S.document().schemaType('blogPage').documentId('blogPage')),
       S.divider(),
+      S.listItem()
+        .title('🔍 SEO')
+        .child(
+          S.list()
+            .title('SEO')
+            .items(SEO_MENU_ITEMS.map((item) => seoMenuItem(S, item))),
+        ),
       S.listItem()
         .title('⚙️ Site settings')
         .child(
