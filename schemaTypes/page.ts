@@ -54,8 +54,8 @@ export const page = defineType({
         isUnique: async (slug, ctx) => {
           const {document, getClient} = ctx
           const client = getClient({apiVersion: '2026-05-01'})
-          const id = document._id.replace(/^drafts\./, '')
-          const params = {slug, prefix: document.pathPrefix, id}
+          const id = document?._id?.replace(/^drafts\./, '') ?? ''
+          const params = {slug, prefix: document?.pathPrefix ?? '', id}
           const q = `!defined(*[_type=='page' && pathPrefix==$prefix
                      && slug.current==$slug && !(_id in [$id, 'drafts.'+$id])][0])`
           return client.fetch(q, params)
@@ -119,8 +119,7 @@ export const page = defineType({
     defineField({
       name: 'expiresAt',
       title: 'Дата завершення (тільки для /promo)',
-      description:
-        'Після цієї дати показуємо банер «Подія завершилась», прибираємо з sitemap.',
+      description: 'Після цієї дати показуємо банер «Подія завершилась», прибираємо з sitemap.',
       type: 'datetime',
       hidden: ({document}) => document?.pathPrefix !== 'promo',
       group: 'lifecycle',
