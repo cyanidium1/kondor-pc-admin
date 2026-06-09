@@ -54,23 +54,14 @@ export const page = defineType({
         isUnique: async (slug, ctx) => {
           const {document, getClient} = ctx
           const client = getClient({apiVersion: '2026-05-01'})
-          const id = document._id.replace(/^drafts\./, '')
-          const params = {slug, prefix: document.pathPrefix, id}
+          const id = document?._id?.replace(/^drafts\./, '') ?? ''
+          const params = {slug, prefix: document?.pathPrefix ?? '', id}
           const q = `!defined(*[_type=='page' && pathPrefix==$prefix
                      && slug.current==$slug && !(_id in [$id, 'drafts.'+$id])][0])`
           return client.fetch(q, params)
         },
       },
       validation: (r) => r.required(),
-      group: 'main',
-    }),
-    defineField({
-      name: 'tags',
-      title: 'Теги',
-      description:
-        'Для фільтрації та угрупувань. У хвилі 1 використовується для організації в Studio.',
-      type: 'array',
-      of: [{type: 'reference', to: [{type: 'tag'}]}],
       group: 'main',
     }),
     defineField({
@@ -95,20 +86,9 @@ export const page = defineType({
     }),
     defineField({
       name: 'seo',
-      title: 'SEO',
-      type: 'object',
+      title: 'SEO блок',
+      type: 'seoSettings',
       group: 'seo',
-      fields: [
-        defineField({name: 'title', type: 'string', validation: (r) => r.required().max(70)}),
-        defineField({
-          name: 'description',
-          type: 'text',
-          rows: 3,
-          validation: (r) => r.required().max(170),
-        }),
-        defineField({name: 'ogImage', type: 'image', options: {hotspot: true}}),
-        defineField({name: 'noindex', type: 'boolean', initialValue: false}),
-      ],
     }),
     defineField({
       name: 'publishedAt',
@@ -119,8 +99,7 @@ export const page = defineType({
     defineField({
       name: 'expiresAt',
       title: 'Дата завершення (тільки для /promo)',
-      description:
-        'Після цієї дати показуємо банер «Подія завершилась», прибираємо з sitemap.',
+      description: 'Після цієї дати показуємо банер «Подія завершилась», прибираємо з sitemap.',
       type: 'datetime',
       hidden: ({document}) => document?.pathPrefix !== 'promo',
       group: 'lifecycle',

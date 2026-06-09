@@ -12,13 +12,14 @@ import {game} from './game'
 
 // === Нові документи ===
 import {page} from './page'
-import {tag} from './tag'
 import {faqEntry} from './faqEntry'
+import {promoCode} from './promoCode'
 
 // === Нові універсальні секції (Sprint 1А) ===
 // === Blog (port from nbyg-adm — preserve original naming) ===
 import {blogPost} from './documents/blogPost'
 import {blogPage} from './documents/blogPage'
+import {siteSeoPageTypes} from './documents/siteSeoPages'
 import {paymentRequisites} from './documents/paymentRequisites'
 import {siteContacts} from './documents/siteContacts'
 import {homePcTasksSection} from './documents/homePcTasksSection'
@@ -44,10 +45,11 @@ export const schemaTypes = [
   gpu,
   game,
   page,
-  tag,
   faqEntry,
+  promoCode,
   blogPost,
   blogPage,
+  ...siteSeoPageTypes,
   paymentRequisites,
   siteContacts,
   homePcTasksSection,
