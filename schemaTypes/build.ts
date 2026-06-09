@@ -86,6 +86,18 @@ export const build = defineType({
       validation: (R) => R.required(),
     }),
     defineField({
+      name: 'sku',
+      title: 'SKU (артикул)',
+      type: 'string',
+      description: 'Унікальний артикул для CRM та інвентаризації. Напр. KPC-VEGA',
+      group: 'main',
+      validation: (R) =>
+        R.required().regex(/^[A-Z0-9-]+$/, {
+          name: 'sku',
+          invert: false,
+        }),
+    }),
+    defineField({
       name: 'tier',
       title: 'Рівень',
       type: 'string',
@@ -528,13 +540,14 @@ export const build = defineType({
   preview: {
     select: {
       name: 'name',
+      sku: 'sku',
       tier: 'tier',
       status: 'status',
       price: 'priceUah',
       showInHomeTop3: 'showInHomeTop3',
       media: 'heroImage',
     },
-    prepare({name, tier, status, price, showInHomeTop3, media}: Record<string, any>) {
+    prepare({name, sku, tier, status, price, showInHomeTop3, media}: Record<string, any>) {
       const statusLabels: Record<string, string> = {
         in_stock: '✅ В наявності',
         assemble_on_order: '🔧 Під замовлення',
@@ -542,9 +555,10 @@ export const build = defineType({
         archived: '📦 Архів',
       }
       const top3 = showInHomeTop3 ? ' · 🏠 Топ-3' : ''
+      const skuLabel = sku ? `${sku} · ` : ''
       return {
         title: name,
-        subtitle: `${tier?.toUpperCase()} · ${price?.toLocaleString('uk')} ₴ · ${statusLabels[status] ?? status}${top3}`,
+        subtitle: `${skuLabel}${tier?.toUpperCase()} · ${price?.toLocaleString('uk')} ₴ · ${statusLabels[status] ?? status}${top3}`,
         media,
       }
     },
