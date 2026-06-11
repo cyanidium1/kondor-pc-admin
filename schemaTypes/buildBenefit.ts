@@ -26,8 +26,15 @@ export const buildBenefit = defineType({
       name: 'title',
       title: 'Перевага',
       type: 'string',
-      description: 'Текст переваги для UI (наприклад: «Збірка та налаштування»).',
+      description: 'Заголовок картки переваги (наприклад: «Стрес-тестування системи»).',
       validation: (rule) => rule.required().min(2).max(120),
+    }),
+    defineField({
+      name: 'description',
+      title: 'Опис',
+      type: 'string',
+      description: 'Підзаголовок під назвою на картці переваги.',
+      validation: (rule) => rule.max(200),
     }),
     defineField({
       name: 'sortOrder',
@@ -47,11 +54,11 @@ export const buildBenefit = defineType({
     },
   ],
   preview: {
-    select: {title: 'title', key: 'key'},
-    prepare({title, key}) {
+    select: {title: 'title', description: 'description', key: 'key'},
+    prepare({title, description, key}) {
       return {
         title: title ?? 'Без назви',
-        subtitle: key,
+        subtitle: description ?? key,
       }
     },
   },
