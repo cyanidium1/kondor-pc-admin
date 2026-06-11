@@ -418,7 +418,8 @@ export const build = defineType({
       type: 'array',
       group: 'content',
       of: [{type: 'reference', to: [{type: 'buildBenefit'}]}],
-      description: 'Оберіть переваги з довідника (розділ «✨ Переваги»).',
+      description:
+        'Оберіть переваги з довідника (розділ «✨ Переваги»). Заголовок і опис картки — у документі переваги.',
     }),
     defineField({
       name: 'useDefaultFaq',
