@@ -1,6 +1,7 @@
 // === Існуючі (НЕ ЧІПАЄМО) ===
 import {gpu} from './gpu'
 import {build} from './build'
+import {buildBenefit} from './buildBenefit'
 
 // Orphan `game.ts` — окрема сутність для довідника ігор.
 // У Спринті 1А реєструємо щоб structure.ts показав «🎮 Ігри».
@@ -42,6 +43,7 @@ import {ctaPromoBanner} from './sections/ctaPromoBanner'
 export const schemaTypes = [
   // documents
   build,
+  buildBenefit,
   gpu,
   game,
   page,
