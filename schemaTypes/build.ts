@@ -389,10 +389,26 @@ export const build = defineType({
     }),
     defineField({
       name: 'assemblyVideoPoster',
-      title: 'Постер відео',
+      title: 'Постер відео збірки',
       type: 'image',
       group: 'media',
       options: {hotspot: true},
+    }),
+    defineField({
+      name: 'gameplayVideoUrl',
+      title: 'Відео: реальний геймплей (URL)',
+      type: 'url',
+      group: 'media',
+      description:
+        'Секція «Реальний геймплей / РЕАЛЬНІ ТЕСТИ НАШИХ ПК» на сторінці збірки. MP4 або YouTube посилання.',
+    }),
+    defineField({
+      name: 'gameplayVideoPoster',
+      title: 'Постер: реальний геймплей',
+      type: 'image',
+      group: 'media',
+      options: {hotspot: true},
+      description: 'Превʼю для відео в секції реальних тестів.',
     }),
 
     // ─── CONTENT ───────────────────────────────────────────
