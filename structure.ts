@@ -89,7 +89,20 @@ export const structure: StructureResolver = (S: StructureBuilder) =>
         ),
       S.divider(),
       // === Існуючий каталог (НЕ ЧІПАЄМО) ===
-      S.listItem().title('🖥️ Ігрові ПК').child(S.documentTypeList('build')),
+      S.listItem()
+        .title('🖥️ Ігрові ПК')
+        .child(
+          S.documentTypeList('build')
+            .title('Ігрові ПК')
+            .defaultOrdering([{field: 'name', direction: 'asc'}]),
+        ),
+      S.listItem()
+        .title('✨ Переваги')
+        .child(
+          S.documentTypeList('buildBenefit')
+            .title('Переваги')
+            .defaultOrdering([{field: 'sortOrder', direction: 'asc'}]),
+        ),
       S.listItem().title('💾 GPU').child(S.documentTypeList('gpu')),
       S.listItem().title('🎮 Ігри').child(S.documentTypeList('game')),
     ])

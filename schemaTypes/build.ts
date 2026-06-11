@@ -397,12 +397,12 @@ export const build = defineType({
 
     // ─── CONTENT ───────────────────────────────────────────
     defineField({
-      name: 'includedFeatureKeys',
-      title: 'Ключі включених переваг',
+      name: 'includedBenefits',
+      title: 'Включені переваги',
       type: 'array',
       group: 'content',
-      of: [{type: 'string'}],
-      description: 'Напр. assembly, stress-test, windows, warranty',
+      of: [{type: 'reference', to: [{type: 'buildBenefit'}]}],
+      description: 'Оберіть переваги з довідника (розділ «✨ Переваги»).',
     }),
     defineField({
       name: 'useDefaultFaq',
