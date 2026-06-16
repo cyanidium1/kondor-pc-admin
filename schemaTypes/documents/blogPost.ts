@@ -144,11 +144,12 @@ export const blogPost = defineType({
         },
       ],
     }),
-    // FAQ секція
     defineField({
-      name: 'faq',
-      type: 'faqSection',
-      title: 'FAQ секція',
+      name: 'customFaq',
+      title: 'FAQ для цієї статті',
+      type: 'array',
+      description: 'Введіть питання та відповіді вручну — кожна стаття формує власний FAQ.',
+      of: [{type: 'faqQuestion'}],
     }),
     // SEO блок
     defineField({
