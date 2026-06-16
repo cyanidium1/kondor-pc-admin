@@ -24,7 +24,6 @@ import {paymentRequisites} from './documents/paymentRequisites'
 import {siteContacts} from './documents/siteContacts'
 import {homePcTasksSection} from './documents/homePcTasksSection'
 import {seoSettings} from './objects/seoSettings'
-import {faqSection} from './objects/faqSection'
 import {faqQuestion} from './objects/faqQuestion'
 import {gallerySection} from './objects/gallerySection'
 
@@ -56,7 +55,6 @@ export const schemaTypes = [
   homePcTasksSection,
   // blog support objects (port from nbyg-adm)
   seoSettings,
-  faqSection,
   faqQuestion,
   gallerySection,
   // section objects

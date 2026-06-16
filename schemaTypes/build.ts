@@ -422,30 +422,11 @@ export const build = defineType({
         'Оберіть переваги з довідника (розділ «✨ Переваги»). Заголовок і опис картки — у документі переваги.',
     }),
     defineField({
-      name: 'useDefaultFaq',
-      title: 'Використовувати дефолтні FAQ (з фронту)',
-      type: 'boolean',
-      group: 'content',
-      initialValue: true,
-      description:
-        'Якщо увімкнено — на фронті відображаються дефолтні (замокані) FAQ. Якщо вимкнено — використовуються FAQ нижче.',
-    }),
-    defineField({
       name: 'customFaq',
       title: 'FAQ для цієї збірки',
       type: 'array',
       group: 'content',
-      hidden: ({parent}) => parent?.useDefaultFaq !== false,
-      description:
-        'Введіть питання та відповіді вручну — кожна збірка формує власний FAQ.',
-      validation: (R) =>
-        R.custom((value, context) => {
-          const parent = context.parent as {useDefaultFaq?: boolean} | undefined
-          if (parent?.useDefaultFaq === false && (!Array.isArray(value) || value.length === 0)) {
-            return 'Додай хоча б одне FAQ, якщо дефолтні FAQ вимкнені.'
-          }
-          return true
-        }),
+      description: 'Введіть питання та відповіді вручну — кожна збірка формує власний FAQ.',
       of: [{type: 'faqQuestion'}],
     }),
     defineField({
