@@ -83,7 +83,6 @@ export const structure: StructureResolver = (S: StructureBuilder) =>
                     .documentId('homePcTasksSection')
                     .title('Для яких задач збираємо ПК'),
                 ),
-              S.listItem().title('❓ FAQ').child(S.documentTypeList('faqEntry')),
               S.listItem().title('🎟️ Промокоди').child(S.documentTypeList('promoCode')),
             ]),
         ),

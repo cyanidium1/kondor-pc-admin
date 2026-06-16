@@ -437,7 +437,7 @@ export const build = defineType({
       group: 'content',
       hidden: ({parent}) => parent?.useDefaultFaq !== false,
       description:
-        'Оберіть питання зі списку FAQ (розділ «❓ FAQ»). Одне питання можна використати в кількох збірках.',
+        'Введіть питання та відповіді вручну — кожна збірка формує власний FAQ.',
       validation: (R) =>
         R.custom((value, context) => {
           const parent = context.parent as {useDefaultFaq?: boolean} | undefined
@@ -446,7 +446,7 @@ export const build = defineType({
           }
           return true
         }),
-      of: [{type: 'reference', to: [{type: 'faqEntry'}]}],
+      of: [{type: 'faqQuestion'}],
     }),
     defineField({
       name: 'reviews',

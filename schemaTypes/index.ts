@@ -13,7 +13,6 @@ import {game} from './game'
 
 // === Нові документи ===
 import {page} from './page'
-import {faqEntry} from './faqEntry'
 import {promoCode} from './promoCode'
 
 // === Нові універсальні секції (Sprint 1А) ===
@@ -26,6 +25,7 @@ import {siteContacts} from './documents/siteContacts'
 import {homePcTasksSection} from './documents/homePcTasksSection'
 import {seoSettings} from './objects/seoSettings'
 import {faqSection} from './objects/faqSection'
+import {faqQuestion} from './objects/faqQuestion'
 import {gallerySection} from './objects/gallerySection'
 
 import {breadcrumbs} from './sections/breadcrumbs'
@@ -47,7 +47,6 @@ export const schemaTypes = [
   gpu,
   game,
   page,
-  faqEntry,
   promoCode,
   blogPost,
   blogPage,
@@ -58,6 +57,7 @@ export const schemaTypes = [
   // blog support objects (port from nbyg-adm)
   seoSettings,
   faqSection,
+  faqQuestion,
   gallerySection,
   // section objects
   breadcrumbs,

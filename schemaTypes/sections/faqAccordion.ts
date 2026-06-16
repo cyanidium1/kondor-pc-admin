@@ -1,8 +1,8 @@
 import {defineField, defineType} from 'sanity'
 
 /**
- * FAQ accordion — посилається на масив FAQ-entry документів.
- * Один FAQ можна використати на декількох сторінках без копіпасти.
+ * FAQ accordion — вбудований список питань-відповідей.
+ * Кожна сторінка формує власний FAQ вручну (без вибору із загального довідника).
  */
 export const faqAccordion = defineType({
   name: 'faqAccordion',
@@ -16,8 +16,10 @@ export const faqAccordion = defineType({
     }),
     defineField({
       name: 'items',
+      title: 'Питання та відповіді',
+      description: 'Додайте питання вручну — кожне з власною відповіддю',
       type: 'array',
-      of: [{type: 'reference', to: [{type: 'faqEntry'}]}],
+      of: [{type: 'faqQuestion'}],
       validation: (r) => r.required().min(1).max(20),
     }),
     defineField({name: 'anchor', type: 'string'}),
