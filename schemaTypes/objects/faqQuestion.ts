@@ -1,20 +1,21 @@
 import {defineField, defineType} from 'sanity'
 
 /**
- * FAQ entry — окремий документ з питанням-відповіддю.
+ * FAQ-питання — вбудований об'єкт (НЕ окремий документ).
  *
- * Використовується через reference у блоці faqAccordion на лендингах
- * та в полі customFaq збірки (build), щоб одне й те саме питання
- * можна було показувати в кількох місцях без копіпасти.
+ * Використовується inline у блоці faqAccordion (лендинги) та в полі
+ * customFaq збірки (build). Кожна сторінка формує власний список питань
+ * вручну — без вибору із загального довідника.
  * Відповідь — Portable Text з підтримкою посилань.
  */
-export const faqEntry = defineType({
-  name: 'faqEntry',
+export const faqQuestion = defineType({
+  name: 'faqQuestion',
   title: 'FAQ — питання',
-  type: 'document',
+  type: 'object',
   fields: [
     defineField({
       name: 'question',
+      title: 'Питання',
       type: 'string',
       validation: (r) => r.required(),
     }),
@@ -48,5 +49,11 @@ export const faqEntry = defineType({
       validation: (r) => r.required().min(1),
     }),
   ],
-  preview: {select: {title: 'question'}},
+  preview: {
+    select: {title: 'question'},
+    prepare: ({title}) => ({
+      title: title || 'Питання без заголовка',
+      subtitle: 'FAQ',
+    }),
+  },
 })
