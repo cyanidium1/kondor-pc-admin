@@ -39,11 +39,26 @@ export const structure: StructureResolver = (S: StructureBuilder) =>
       S.divider(),
       // === Блог ===
       S.listItem()
-        .title('📰 Статті блогу')
+        .title('📰 Блог')
         .child(
-          S.documentTypeList('blogPost')
-            .title('Статті блогу')
-            .defaultOrdering([{field: '_createdAt', direction: 'desc'}]),
+          S.list()
+            .title('Блог')
+            .items([
+              S.listItem()
+                .title('Статті')
+                .child(
+                  S.documentTypeList('blogPost')
+                    .title('Статті блогу')
+                    .defaultOrdering([{field: '_createdAt', direction: 'desc'}]),
+                ),
+              S.listItem()
+                .title('Автори')
+                .child(
+                  S.documentTypeList('blogAuthor')
+                    .title('Автори блогу')
+                    .defaultOrdering([{field: 'name', direction: 'asc'}]),
+                ),
+            ]),
         ),
       S.divider(),
       S.listItem()

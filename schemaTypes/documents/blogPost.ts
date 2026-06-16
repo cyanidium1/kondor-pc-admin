@@ -72,12 +72,20 @@ export const blogPost = defineType({
         isUnique: (value, context) => context.defaultIsUnique(value, context),
       },
     }),
+    defineField({
+      name: 'author',
+      title: 'Автор',
+      type: 'reference',
+      to: [{type: 'blogAuthor'}],
+      validation: (rule) => rule.required(),
+    }),
     // Основний контент
     defineField({
       name: 'content',
       type: 'array',
       title: 'Основний контент',
-      description: 'Додайте контент статті: заголовки, параграфи, списки, зображення, таблиці',
+      description:
+        'Додайте контент статті: заголовки, параграфи, списки, зображення, таблиці, кнопки',
       of: [
         {
           type: 'block',
@@ -142,6 +150,7 @@ export const blogPost = defineType({
           type: 'gallerySection',
           title: 'Галерея',
         },
+        {type: 'faqAnswerButton'},
       ],
     }),
     defineField({
@@ -163,12 +172,14 @@ export const blogPost = defineType({
       title: 'heroTitle',
       slug: 'slug.current',
       image: 'heroMobileImage',
+      authorName: 'author.name',
     },
     prepare(selection) {
-      const {title, slug, image} = selection
+      const {title, slug, image, authorName} = selection
+      const slugPart = slug ? `/${slug}` : 'Slug не налаштований'
       return {
         title: title || 'Без назви',
-        subtitle: slug ? `/${slug}` : 'Slug не налаштований',
+        subtitle: authorName ? `${slugPart} · ${authorName}` : slugPart,
         media: image,
       }
     },

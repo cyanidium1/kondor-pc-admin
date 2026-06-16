@@ -18,6 +18,7 @@ import {promoCode} from './promoCode'
 // === Нові універсальні секції (Sprint 1А) ===
 // === Blog (port from nbyg-adm — preserve original naming) ===
 import {blogPost} from './documents/blogPost'
+import {blogAuthor} from './documents/blogAuthor'
 import {blogPage} from './documents/blogPage'
 import {siteSeoPageTypes} from './documents/siteSeoPages'
 import {paymentRequisites} from './documents/paymentRequisites'
@@ -49,6 +50,7 @@ export const schemaTypes = [
   page,
   promoCode,
   blogPost,
+  blogAuthor,
   blogPage,
   ...siteSeoPageTypes,
   paymentRequisites,

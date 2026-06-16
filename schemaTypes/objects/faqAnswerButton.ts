@@ -1,7 +1,7 @@
 import {defineField, defineType} from 'sanity'
 
 /**
- * Кнопка всередині Portable Text відповіді FAQ.
+ * Кнопка всередині Portable Text (FAQ, статті блогу).
  * На фронті рендериться окремим CTA-блоком, не як текстове посилання.
  */
 export const faqAnswerButton = defineType({
@@ -18,7 +18,7 @@ export const faqAnswerButton = defineType({
     defineField({
       name: 'href',
       title: 'Посилання',
-      type: 'url',
+      type: 'string',
       validation: (r) => r.required(),
     }),
     defineField({

@@ -31,6 +31,22 @@ export const seoSettings = defineType({
       },
     }),
     defineField({
+      name: 'opengraphTitle',
+      type: 'string',
+      title: 'OG title',
+      description: 'Заголовок для соціальних мереж (якщо порожньо — використовується SEO title)',
+      validation: (rule) => rule.max(70),
+    }),
+    defineField({
+      name: 'opengraphDescription',
+      type: 'text',
+      rows: 3,
+      title: 'OG description',
+      description:
+        'Опис для соціальних мереж (якщо порожньо — використовується SEO description)',
+      validation: (rule) => rule.max(300),
+    }),
+    defineField({
       name: 'opengraphImage',
       type: 'image',
       title: 'Open Graph зображення',
