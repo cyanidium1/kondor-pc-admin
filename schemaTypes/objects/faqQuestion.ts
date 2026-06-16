@@ -6,7 +6,7 @@ import {defineField, defineType} from 'sanity'
  * Використовується inline у блоці faqAccordion (лендинги), у полі customFaq
  * збірки (build) та статті блогу (blogPost). Кожна сторінка формує власний список питань
  * вручну — без вибору із загального довідника.
- * Відповідь — Portable Text з підтримкою посилань.
+ * Відповідь — Portable Text: текст, списки, посилання та блок «Кнопка».
  */
 export const faqQuestion = defineType({
   name: 'faqQuestion',
@@ -37,6 +37,7 @@ export const faqQuestion = defineType({
               {
                 name: 'link',
                 type: 'object',
+                title: 'Посилання в тексті',
                 fields: [
                   defineField({name: 'href', type: 'url'}),
                   defineField({name: 'newTab', type: 'boolean', initialValue: false}),
@@ -45,6 +46,7 @@ export const faqQuestion = defineType({
             ],
           },
         },
+        {type: 'faqAnswerButton'},
       ],
       validation: (r) => r.required().min(1),
     }),
