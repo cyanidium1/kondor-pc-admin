@@ -1,4 +1,5 @@
 import {defineField, defineType} from 'sanity'
+import {articlePortableTextOf} from './articlePortableText'
 
 export const seoSettings = defineType({
   name: 'seoSettings',
@@ -62,6 +63,14 @@ export const seoSettings = defineType({
           description: 'Важливо для SEO та доступності',
         },
       ],
+    }),
+    defineField({
+      name: 'content',
+      type: 'array',
+      title: 'Контент',
+      description:
+        'Додайте контент: заголовки, параграфи, списки, зображення, таблиці, кнопки',
+      of: articlePortableTextOf,
     }),
     defineField({
       name: 'schemaJson',
