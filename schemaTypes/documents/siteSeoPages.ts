@@ -61,16 +61,6 @@ export const SITE_SEO_PAGE_CONFIGS = [
     title: 'Реквізити',
     subtitle: 'SEO для сторінки реквізитів',
   },
-  {
-    name: 'seoCheckoutPage',
-    title: 'Сторінка чекаута',
-    subtitle: 'SEO для сторінки оформлення замовлення',
-  },
-  {
-    name: 'seoOrderSuccessPage',
-    title: 'Успішне оформлення замовлення',
-    subtitle: 'SEO для сторінки підтвердження замовлення',
-  },
 ] as const satisfies readonly SeoSingletonConfig[]
 
 /** Усі SEO-синглтони, крім blogPage (вже існує окремо). */
