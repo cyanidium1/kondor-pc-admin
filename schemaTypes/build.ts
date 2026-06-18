@@ -395,6 +395,14 @@ export const build = defineType({
       options: {hotspot: true},
     }),
     defineField({
+      name: 'assemblyVideoUploadDate',
+      title: 'Дата публікації відео збірки',
+      type: 'datetime',
+      group: 'media',
+      description:
+        'ISO-дата для VideoObject (напр. 2026-06-01T00:00:00+03:00). Без дати та постера відео не потрапить у розмітку.',
+    }),
+    defineField({
       name: 'gameplayVideoUrl',
       title: 'Відео: реальний геймплей (URL)',
       type: 'url',
@@ -409,6 +417,14 @@ export const build = defineType({
       group: 'media',
       options: {hotspot: true},
       description: 'Превʼю для відео в секції реальних тестів.',
+    }),
+    defineField({
+      name: 'gameplayVideoUploadDate',
+      title: 'Дата публікації геймплей-відео',
+      type: 'datetime',
+      group: 'media',
+      description:
+        'ISO-дата для VideoObject (напр. 2026-06-01T00:00:00+03:00). Без дати та постера відео не потрапить у розмітку.',
     }),
 
     // ─── CONTENT ───────────────────────────────────────────
