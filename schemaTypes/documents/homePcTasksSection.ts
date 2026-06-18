@@ -42,7 +42,7 @@ export const homePcTasksSection = defineType({
                 }),
               ],
               description:
-                'Можна обрати кілька ігор. На фронті посилання за slug (напр. /dlya/{slug}) для кожної.',
+                'Можна обрати кілька ігор. На фронті посилання за slug (напр. /game-pc/{slug}) для кожної.',
               validation: (R) => R.required().min(1),
             }),
             defineField({

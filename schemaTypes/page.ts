@@ -3,7 +3,7 @@ import {defineField, defineType} from 'sanity'
 /**
  * Page — лендингова сторінка конструктора.
  *
- * Один документ = одна сторінка /dlya/{slug} або /promo/{slug}.
+ * Один документ = одна сторінка /game-pc/{slug} або /promo/{slug}.
  * Маркетолог обирає префікс, slug, добавляє блоки в sections[].
  *
  * У Спринті 1А — БЕЗ продуктових посилань. Усі секції універсальні
@@ -35,12 +35,12 @@ export const page = defineType({
       type: 'string',
       options: {
         list: [
-          {title: '/dlya/* (вічнозелений: гра або сценарій)', value: 'dlya'},
+          {title: '/game-pc/* (вічнозелений: гра або сценарій)', value: 'game-pc'},
           {title: '/promo/* (тимчасовий: подія або акція)', value: 'promo'},
         ],
         layout: 'radio',
       },
-      initialValue: 'dlya',
+      initialValue: 'game-pc',
       validation: (r) => r.required(),
       group: 'main',
     }),
